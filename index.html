@@ -10,20 +10,28 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Fonte do convite físico — aplicada aos textos principais (nomes do casal) */
+@font-face {
+  font-family: 'Alamanda';
+  src: url('Alamanda.otf') format('opentype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  /* PALETA: marfim + dourado antigo + marrom quente  (o verde fica só nas iniciais/monograma) */
-  --cream: #eef2fb;        /* fundo marfim quente */
-  --warm-white: #e7edf9;   /* creme quente */
-  --musgo: #24429e;        /* dourado antigo (accent principal) */
-  --pistache: #7d97d6;     /* dourado claro (accent claro) */
-  --pistache-soft: #dbe4f7;/* dourado pálido */
-  --musgo-dark: #142a63;   /* bronze / dourado escuro */
-  --text: #1a2138;
-  --text-mid: #3d4a72;
-  --text-light: #7784a6;
-  /* Fonte de caligrafia dos NOMES do casal — combina com o traço do monograma.
-     Para trocar, basta mudar aqui: 'Great Vibes' | 'Pinyon Script' | 'Allura' | 'Parisienne' | 'Tangerine' */
-  --script: 'Allura', 'Tangerine', cursive;
+  /* PALETA: fundo branco/off + escrita em azul royal */
+  --cream: #FDFDFB;        /* fundo off-white */
+  --warm-white: #FFFFFF;   /* branco */
+  --musgo: #24429e;        /* azul royal (accent principal) */
+  --pistache: #90a5da;     /* azul royal claro (linhas/detalhes) */
+  --pistache-soft: #dbe4f7;/* azul royal pálido */
+  --musgo-dark: #182f66;   /* azul royal escuro */
+  --text: #24429e;         /* azul royal (escrita principal) */
+  --text-mid: #33499e;     /* azul royal (escrita secundária) */
+  --text-light: #6f85c2;   /* azul royal suave (apoio) */
+  /* Fonte de caligrafia dos NOMES do casal — mesma do convite físico. */
+  --script: 'Alamanda', 'Allura', 'Tangerine', cursive;
 }
 
 html { scroll-behavior: smooth; }
@@ -40,7 +48,7 @@ body {
 ══════════════════════════════════ */
 #splash {
   position: fixed; inset: 0; z-index: 9999;
-  background: #e7edf9;
+  background: #FDFDFB;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; perspective: 2200px;
   transition: opacity 0.8s ease;
@@ -122,7 +130,7 @@ body {
   position: absolute; z-index: 3; top: 50%; left: 50%; transform: translate(-50%,-50%);
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
 }
-.cover-names { font-family: var(--script); font-weight: 700; font-size: clamp(46px, 12vw, 60px); color: var(--text); line-height: 1.05; margin: 10px 0 4px; }
+.cover-names { font-family: var(--script); font-weight: 700; font-size: clamp(24px, 6.5vw, 38px); color: var(--text); line-height: 1.05; margin: 10px 0 4px; white-space: nowrap; }
 .cover-divider { width: 40px; height: 1px; background: var(--pistache); margin: 8px 0; }
 .cover-date { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--musgo-dark); }
 .cover-tap { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-light); font-style: italic; margin-top: 12px; animation: tapPulse 2.2s ease-in-out infinite; }
@@ -190,8 +198,9 @@ body {
   margin: 22px auto 26px;
 }
 .hero-names {
-  font-family: var(--script); font-weight: 700; font-size: clamp(64px, 16vw, 104px);
+  font-family: var(--script); font-weight: 700; font-size: clamp(34px, 9vw, 70px);
   color: var(--text); line-height: 1.0; text-align: center; margin: 8px 0 20px;
+  white-space: nowrap;
 }
 .hero-invite-text {
   font-family: 'Cinzel', Georgia, serif; font-size: clamp(11px, 2.5vw, 13px);
@@ -200,28 +209,6 @@ body {
 .hero-scroll { display: flex; flex-direction: column; align-items: center; gap: 8px; animation: bounceDown 2s ease-in-out infinite; }
 .hero-scroll span { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-mid); }
 .scroll-arrow { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--musgo), transparent); }
-
-/* ══════════════════════════════════
-   MÚSICA (barra)
-══════════════════════════════════ */
-.music-section {
-  background: var(--musgo-dark); padding: 28px 24px;
-  display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
-}
-.music-label {
-  font-family: 'Cinzel', serif; font-size: 10px;
-  letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.8);
-}
-.music-player { display: flex; align-items: center; gap: 12px; }
-.music-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; color: white; }
-.play-btn {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.5);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all 0.2s; flex-shrink: 0;
-}
-.play-btn:hover { background: rgba(255,255,255,0.35); }
-.play-btn svg { margin-left: 2px; }
 
 /* ══════════════════════════════════
    SECTIONS
@@ -384,21 +371,6 @@ section { padding: 80px 24px; max-width: 600px; margin: 0 auto; text-align: cent
   transition: all 0.3s ease;
 }
 .map-btn:hover { background: var(--musgo-dark); color: white; }
-
-/* DRESS CODE */
-.dress-section { background: white; border: 1.5px solid var(--pistache); padding: 40px 24px; margin-top: 16px; }
-.dress-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px; }
-.dress-item { text-align: center; }
-.dress-item svg { display: block; margin: 0 auto 12px; }
-.dress-item-label {
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--musgo-dark); font-weight: 500; display: block; margin-bottom: 6px;
-}
-.dress-item-desc { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--text-mid); }
-.dress-note {
-  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px;
-  color: var(--text-light); text-transform: uppercase; margin-top: 24px; display: block; line-height: 1.7;
-}
 
 /* COUNTDOWN */
 .countdown-wrap {
@@ -591,67 +563,18 @@ section { padding: 80px 24px; max-width: 600px; margin: 0 auto; text-align: cent
 }
 
 /* FOOTER */
-footer { text-align: center; padding: 48px 24px; border-top: 1.5px solid var(--pistache); }
-footer .footer-names {
-  font-family: var(--script); font-weight: 700; font-size: 54px;
-  color: var(--musgo-dark); display: block; margin-bottom: 8px;
-}
-footer .footer-date { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: var(--text-mid); }
-footer .footer-blessing {
-  font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic;
-  color: var(--text-light); margin-top: 16px;
+footer { text-align: center; padding: 64px 24px 72px; border-top: 1.5px solid var(--pistache); }
+footer .footer-logo {
+  display: block; margin: 0 auto;
+  width: clamp(150px, 42vw, 220px); height: auto;
+  mix-blend-mode: multiply;
 }
 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* MUSIC WIDGET */
-.music-widget {
-  position: fixed; bottom: 24px; right: 24px; z-index: 999;
-  display: flex; align-items: center; gap: 10px;
-  background: rgba(238,242,250,0.95); border: 1.5px solid var(--musgo);
-  padding: 10px 16px; backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(20,40,90,0.2);
-}
-.music-toggle {
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1.5px solid var(--musgo); background: transparent;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: var(--musgo-dark); font-size: 14px; transition: all 0.2s;
-}
-.music-toggle:hover { background: var(--musgo-dark); color: white; }
-.music-widget-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; color: var(--text-light); text-transform: uppercase; }
-.music-bars { display: flex; gap: 2px; align-items: flex-end; height: 16px; }
-.music-bar { width: 3px; background: var(--musgo); border-radius: 1px; animation: musicBar 0.8s ease-in-out infinite; }
-.music-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
-.music-bar:nth-child(2) { height: 12px; animation-delay: 0.15s; }
-.music-bar:nth-child(3) { height: 8px; animation-delay: 0.3s; }
-.music-bar:nth-child(4) { height: 14px; animation-delay: 0.1s; }
-.music-bar:nth-child(5) { height: 6px; animation-delay: 0.25s; }
-@keyframes musicBar { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1.2); } }
-.music-bars.paused .music-bar { animation-play-state: paused; }
-
-/* MUSIC MODAL */
-.music-modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(8px); z-index: 300;
-  display: flex; align-items: center; justify-content: center; padding: 24px;
-  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-}
-.music-modal-overlay.open { opacity: 1; pointer-events: all; }
-.music-modal {
-  background: var(--musgo-dark); max-width: 420px; width: 100%; padding: 40px 32px;
-  position: relative; transform: translateY(20px); transition: transform 0.3s ease; text-align: center;
-}
-.music-modal-overlay.open .music-modal { transform: translateY(0); }
-.music-modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-style: italic; color: white; margin-bottom: 6px; }
-.music-modal p { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-bottom: 24px; }
-.music-modal iframe { border-radius: 0; border: none; }
-.music-modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 20px; cursor: pointer; }
-
 @media(max-width: 500px) {
   .info-grid { grid-template-columns: 1fr; }
-  .dress-grid { gap: 20px; }
   .countdown-grid { gap: 8px; }
   .countdown-num { font-size: 30px; }
   .aviso-item { padding: 18px 16px; gap: 14px; }
@@ -698,7 +621,7 @@ footer .footer-blessing {
 
 /* ── Fonte de caligrafia dos nomes (Great Vibes só tem 1 peso) ── */
 .inner-script, .cover-names, .hero-names, .hero-mono-amp,
-.story-baby, footer .footer-names {
+.story-baby {
   font-weight: 400;
   font-synthesis: none;
 }
@@ -774,17 +697,6 @@ footer .footer-blessing {
   </div>
 </div>
 
-<!-- MUSIC WIDGET (fixed) -->
-<div class="music-widget" id="musicWidget" style="display:none;">
-  <div class="music-bars" id="musicBars">
-    <div class="music-bar"></div><div class="music-bar"></div>
-    <div class="music-bar"></div><div class="music-bar"></div>
-    <div class="music-bar"></div>
-  </div>
-  <span class="music-widget-label">Nossa Música</span>
-  <button class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="Pausar/Tocar">&#9646;&#9646;</button>
-</div>
-
 <!-- MAIN -->
 <div id="main">
 
@@ -851,23 +763,11 @@ footer .footer-blessing {
     </div>
   </div>
 
-  <!-- MÚSICA (barra) -->
-  <div class="music-section">
-    <span class="music-label">Nossa Música</span>
-    <div class="music-player">
-      <button class="play-btn" onclick="toggleMusic()" title="Tocar / Pausar">
-        <svg width="14" height="16" viewBox="0 0 14 16" fill="white"><path d="M0 0 L14 8 L0 16 Z"/></svg>
-      </button>
-      <span class="music-title">Tantos Mares — Pedro Valença &amp; Gabriela Stehling</span>
-    </div>
-  </div>
-
   <!-- VERSÍCULO -->
   <section>
-    <span class="section-label reveal">O nosso versículo</span>
     <div class="message-box reveal">
       <p class="message-text">
-        "Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do Senhor fez isto, e o Santo de Israel o criou."
+        "Para que todos vejam, e saibam, e considerem, e juntamente entendam que a mão do Senhor fez isto."
         <span class="message-ref">Isaías 41, 20</span>
       </p>
     </div>
@@ -972,36 +872,6 @@ footer .footer-blessing {
     </div>
   </section>
 
-  <!-- DRESS CODE -->
-  <section style="padding-top: 0;">
-    <span class="section-label reveal">Dress Code</span>
-    <div class="dress-section reveal">
-      <div class="dress-grid">
-        <div class="dress-item">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#142a63" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 2 Q12 6 16 2 L18 8 L15 8 L15 22 L9 22 L9 8 L6 8 Z"/>
-            <path d="M9 8 Q12 11 15 8"/>
-          </svg>
-          <span class="dress-item-label">Elas</span>
-          <span class="dress-item-desc">Social Fino</span>
-        </div>
-        <div class="dress-item">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#142a63" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="7" y="2" width="10" height="6" rx="1"/>
-            <path d="M7 5 L4 8 L4 22 L20 22 L20 8 L17 5"/>
-            <path d="M7 8 L7 22 M17 8 L17 22"/>
-            <path d="M11 2 L11 8 M13 2 L13 8"/>
-          </svg>
-          <span class="dress-item-label">Eles</span>
-          <span class="dress-item-desc">Social Fino</span>
-        </div>
-      </div>
-      <span class="dress-note">
-        Por favor, evite o branco — reservado à noiva
-      </span>
-    </div>
-  </section>
-
   <!-- CONTAGEM REGRESSIVA -->
   <section style="padding-top: 0;">
     <span class="section-label reveal">Contagem regressiva</span>
@@ -1017,9 +887,7 @@ footer .footer-blessing {
 
 
   <footer>
-    <span class="footer-names">Iasminy &amp; Andrigo</span>
-    <span class="footer-date" id="footer-date">Salvador do Sul · RS</span>
-    <p class="footer-blessing">Com a bênção de Deus, para sempre.</p>
+    <img class="footer-logo" src="logo.jpg" alt="Iasminy & Andrigo">
   </footer>
 </div>
 
@@ -1110,7 +978,6 @@ function openInvite() {
     setTimeout(function () {
       splash.style.display = 'none';
       document.getElementById('main').style.display = 'block';
-      document.getElementById('musicWidget').style.display = 'flex';
       initScrollAnimations();
       startCountdown();
       reflectMusicState();
